@@ -28,7 +28,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: KUBERNETES_DOMAIN
-              value: "clickhouse.svc.cluster.local"
+              value: "svc.cluster.local"
             - name: CLUSTER_NAME
               value: "bitbook-service"
             - name: NODE_ID
