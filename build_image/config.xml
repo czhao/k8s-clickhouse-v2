@@ -54,7 +54,7 @@
     <default_profile>default</default_profile>
 
     <default_database>default</default_database>
-    <timezone>Europe/Moscow</timezone>
+    <timezone>Asia/Shanghai</timezone>
 
     <remote_servers>
       <CLUSTER_NAME>
