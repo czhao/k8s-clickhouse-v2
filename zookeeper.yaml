@@ -42,16 +42,6 @@ data:
   snap.retain: "3"
   purge.interval: "1"
 ---
-apiVersion: policy/v1beta1
-kind: PodDisruptionBudget
-metadata:
-  name: zk-budget
-spec:
-  selector:
-    matchLabels:
-      app: zk
-  minAvailable: 2
----
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
@@ -162,6 +152,12 @@ spec:
       securityContext:
         runAsUser: 1000
         fsGroup: 1000
-      volumes:
-        - name: datadir
-          emptyDir: {}
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "alicloud-disk-efficiency"
+      resources:
+        requests:
+          storage: 20Gi
