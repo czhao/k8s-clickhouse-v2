@@ -21,7 +21,7 @@ spec:
       containers:
         - name: k8sch
           imagePullPolicy: Always
-          image: count0ru/k8s-clickhouse-v2
+          image: yandex/clickhouse-server
           env:
             - name: NAMESPACE
               valueFrom:
