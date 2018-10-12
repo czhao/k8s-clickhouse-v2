@@ -31,16 +31,16 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: zk-config
+  name: zk-cm
 data:
   ensemble: "zk-0;zk-1;zk-2"
-  jvm.heap: "2G"
+  jvm.heap: "1G"
   tick: "2000"
   init: "10"
   sync: "5"
   client.cnxns: "60"
   snap.retain: "3"
-  purge.interval: "1"
+  purge.interval: "0"
 ---
 apiVersion: apps/v1beta1
 kind: StatefulSet
@@ -84,45 +84,42 @@ spec:
             - containerPort: 3888
               name: leader-election
           env:
-            - name: ZK_ENSEMBLE
+            - name : ZK_REPLICAS
+              value: "3"
+            - name : ZK_HEAP_SIZE
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
-                  key: ensemble
-            - name: ZK_HEAP_SIZE
-              valueFrom:
-                configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: jvm.heap
-            - name: ZK_TICK_TIME
+            - name : ZK_TICK_TIME
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: tick
-            - name: ZK_INIT_LIMIT
+            - name : ZK_INIT_LIMIT
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: init
-            - name: ZK_SYNC_LIMIT
+            - name : ZK_SYNC_LIMIT
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: tick
-            - name: ZK_MAX_CLIENT_CNXNS
+            - name : ZK_MAX_CLIENT_CNXNS
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: client.cnxns
             - name: ZK_SNAP_RETAIN_COUNT
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: snap.retain
             - name: ZK_PURGE_INTERVAL
               valueFrom:
                 configMapKeyRef:
-                  name: zk-config
+                  name: zk-cm
                   key: purge.interval
             - name: ZK_CLIENT_PORT
               value: "2181"
