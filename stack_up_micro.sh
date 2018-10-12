@@ -6,6 +6,6 @@ else
   exit
 fi
 kubectl create -f zookeeper_micro.yaml "$NAMESPACE"
-while [ $(kubectl get po "$NAMESPACE" -o=wide | grep zk | grep Run | wc -l) -ne 3 ] ; do sleep 3; echo "Zookeper cluster not ready. Will try again after 3 sec..." ;done
+while [ $(kubectl get po "$NAMESPACE" -o=wide | grep zk | grep Run | wc -l) -ne 1 ] ; do sleep 3; echo "Zookeper cluster not ready. Will try again after 3 sec..." ;done
 kubectl create -f services "$NAMESPACE"
 kubectl create -f statefulsets "$NAMESPACE"
