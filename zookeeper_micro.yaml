@@ -28,15 +28,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zk-hs
-  labels:
-    app: zk
+  name: zk-headless
 spec:
+  type: ClusterIP
   ports:
-  - port: 2888
-    name: server
-  - port: 3888
-    name: leader-election
+    - port: 2888
+      name: server
+    - port: 3888
+      name: leader-election
   clusterIP: None
   selector:
     app: zk
@@ -44,13 +43,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zk-cs
+  name: zk-headless-ext
   labels:
-    app: zk
+    app: zk-headless
 spec:
+  type: ClusterIP
   ports:
-  - port: 2181
-    name: client
+    - port: 2181
+      targetPort: 2181
   selector:
     app: zk
 ---
