@@ -25,13 +25,8 @@ RUN apt-get update \
     && apt-get clean
 
 COPY docker_related_config.xml /etc/clickhouse-server/config.d/
-ADD https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 /bin/gosu
-
-RUN chmod +x \
-    /bin/gosu
 
 RUN chown -R clickhouse /etc/clickhouse-server/
-
 COPY macro* /opt/
 COPY config.xml /etc/clickhouse-server/config.xml
 COPY run.sh /run.sh
