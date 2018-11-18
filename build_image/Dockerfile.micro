@@ -1,8 +1,7 @@
 FROM ubuntu:18.04
 
 ARG repository="deb http://repo.yandex.ru/clickhouse/deb/stable/ main/"
-ARG version=18.14.9
-ARG gosu_ver=1.10
+ARG version=18.14.13
 
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
