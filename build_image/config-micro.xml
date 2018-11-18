@@ -68,16 +68,6 @@
                  <port>9000</port>
              </replica>
          </shard>
-         <shard>
-             <replica>
-                 <host>clickhouse-2.NAMESPACE</host>
-                 <port>9000</port>
-             </replica>
-             <replica>
-                 <host>clickhouse-3.NAMESPACE</host>
-                 <port>9000</port>
-             </replica>
-         </shard>
       </CLUSTER_NAME>
     </remote_servers>
 
@@ -88,21 +78,6 @@
         </node>
     </zookeeper>
 
-
-    <!-- <zookeeper>\ -->
-    <!--     <node>\ -->
-    <!--         <host>zk&#45;0.zk&#45;headless.NAMESPACE.svc</host>\ -->
-    <!--         <port>2181</port>\ -->
-    <!--     </node>\ -->
-    <!--     <node>\ -->
-    <!--         <host>zk&#45;1.zk&#45;headless.NAMESPACE.svc</host>\ -->
-    <!--         <port>2181</port>\ -->
-    <!--     </node>\ -->
-    <!--     <node>\ -->
-    <!--         <host>zk&#45;2.zk&#45;headless.NAMESPACE.svc</host>\ -->
-    <!--         <port>2181</port>\ -->
-    <!--     </node>\ -->
-    <!-- </zookeeper>\ -->
 
     <macros incl="macros" />
 
