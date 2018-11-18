@@ -30,7 +30,7 @@ spec:
             - name: KUBERNETES_DOMAIN
               value: "svc.cluster.local"
             - name: CLUSTER_NAME
-              value: "bitbook-service"
+              value: "bitbook-servie"
             - name: NODE_ID
               value: "3"
           ports:
