@@ -59,6 +59,7 @@
     <remote_servers>
       <CLUSTER_NAME>
          <shard>
+             <internal_replication>false</internal_replication>
              <replica>
                  <host>clickhouse-0.NAMESPACE</host>
                  <port>9000</port>
