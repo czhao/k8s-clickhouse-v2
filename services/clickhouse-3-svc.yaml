@@ -10,6 +10,8 @@ spec:
       name: server
     - port: 9000
       name: client
+    - port: 9009
+      name: interserver
   selector:
     app: clickhouse
     clicknode: "3"
