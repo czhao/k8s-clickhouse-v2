@@ -23,13 +23,13 @@ RUN apt-get update \
         /tmp/* \
     && apt-get clean
 
-USER clickhouse
 RUN chown -R clickhouse /etc/clickhouse-server/
 COPY macro* /opt/
 COPY config.xml /etc/clickhouse-server/config.xml
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
+USER clickhouse
 EXPOSE 9000 8123 9009
 VOLUME /var/lib/clickhouse
 
