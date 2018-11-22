@@ -45,7 +45,7 @@ kind: Service
 metadata:
   name: zk-headless-ext
   labels:
-    app: zk-headless
+    app: zk
 spec:
   type: ClusterIP
   ports:
@@ -59,7 +59,7 @@ kind: StatefulSet
 metadata:
   name: zk
 spec:
-  serviceName: zk-hs
+  serviceName: zk-headless
   replicas: 1
   podManagementPolicy: Parallel
   updateStrategy:
