@@ -10,6 +10,12 @@ kubectl apply -f ch_pv_1.yaml
 ```
 You must set up the persistent volume so the pod can initialize the permission properly. 
 
+Then start the zookeeper. 
+
+```
+bash zk_up_micro.sh [NAMESPACE]
+```
+
 # ClickHouse cluster for kubernetes
 use **stack_up_micro.sh** to deploy a micro cluster with 1 master and 1 replica. Alternatively you may configure more persistent volumes to deploy the full cluster via **stack_up.sh**.
 
@@ -17,10 +23,16 @@ use **stack_up_micro.sh** to deploy a micro cluster with 1 master and 1 replica.
 bash stack_up_micro.sh [NAMESPACE]
 ```
 
-To stop the instance. 
+To stop the clickhouse pods. 
 
 ```
 bash stack_down_micro.sh [NAMESPACE]
+```
+
+To stop the zookeeper. 
+
+```
+bash zk_down_micro.sh [NAMESPACE]
 ```
 
 # Configuration Highlights
