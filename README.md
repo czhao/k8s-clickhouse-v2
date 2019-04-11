@@ -74,6 +74,30 @@ Connected to ClickHouse server version 18.14.13 revision 54409.
 clickhouse-1-0.clickhouse-1.default.svc.cluster.local :) 
 
 ```
+For replica testing, create the table with distributed engine. 
+
+```
+CREATE TABLE ontime
+(
+    Year UInt16,
+    Quarter UInt8,
+    Month UInt8,
+    DayofMonth UInt8,
+    DayOfWeek UInt8,
+    FlightDate Date,
+    UniqueCarrier FixedString(7),
+    AirlineID Int32,
+    Carrier FixedString(2),
+    TailNum String,
+    FlightNum String,
+    ....
+)
+ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/flight', '{replica}')
+PARTITION BY (FlightDate, Year)
+ORDER BY (Year, FlightDate)
+SAMPLE BY (FlightDate)
+
+```
 
 
 
