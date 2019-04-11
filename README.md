@@ -14,13 +14,13 @@ You must set up the persistent volume so the pod can initialize the permission p
 use **stack_up_micro.sh** to deploy a micro cluster with 1 master and 1 replica. Alternatively you may configure more persistent volumes to deploy the full cluster via **stack_up.sh**.
 
 ```
-bash stack_up_micro.sh
+bash stack_up_micro.sh [NAMESPACE]
 ```
 
 To stop the instance. 
 
 ```
-bash stack_down_micro.sh
+bash stack_down_micro.sh [NAMESPACE]
 ```
 
 # Configuration Highlights
