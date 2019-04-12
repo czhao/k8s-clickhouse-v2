@@ -107,6 +107,11 @@ use part of the [ontime dataset](https://clickhouse.yandex/docs/en/getting_start
 - 17GB uncompressed data
 - 39201182 rows and 109 fields
 
+For detail testing, please refer to [data/list.txt](data/list.txt)
+
+### Configuratoin
+- Micro setup with 2 replica
+- 10GB PV 
 
 ### Import the data into clickhouse
 ```bash
@@ -125,9 +130,6 @@ for i in *.csv; do sed 's/\.00//g' $i | clickhouse-client --host=localhost --que
 |  | SELECT Carrier, c, c2, c*1000/c2 as c3 FROM (     SELECT         Carrier,         count(*) AS c     FROM ontime     WHERE DepDelay>10         AND Year=2016     GROUP BY Carrier ) ANY INNER JOIN (     SELECT         Carrier,         count(*) AS c2     FROM ontime     WHERE Year=2016     GROUP BY Carrier ) USING Carrier ORDER BY c3 DESC; | 12 rows in set. Elapsed: 0.389 sec. Processed 11.24 million rows, 49.41 MB (28.89 million rows/s., 127.05 MB/s.) |
 |  | SELECT DestCityName, uniqExact(OriginCityName) AS u FROM ontime WHERE Year >= 2000 and Year <= 2018 GROUP BY DestCityName ORDER BY u DESC LIMIT 10; | 10 rows in set. Elapsed: 1.086 sec. Processed 39.20 million rows, 1.81 GB (36.08 million rows/s., 1.66 GB/s.) |
 |  | select    min(Year), max(Year), Carrier, count(*) as cnt,    sum(ArrDelayMinutes>30) as flights_delayed,    round(sum(ArrDelayMinutes>30)/count(*),2) as rate FROM ontime WHERE    DayOfWeek not in (6,7) and OriginState not in ('AK', 'HI', 'PR', 'VI')    and DestState not in ('AK', 'HI', 'PR', 'VI')    and FlightDate < '2019-01-01' GROUP by Carrier HAVING cnt > 100000 and max(Year) > 1990 ORDER by rate DESC LIMIT 1000; | 18 rows in set. Elapsed: 1.085 sec. Processed 39.20 million rows, 443.69 MB (36.14 million rows/s., 409.00 MB/s.) |
-
-### Test Data
-Please refer to [data/list.txt](data/list.txt)
 
 
 ### Table Schema
